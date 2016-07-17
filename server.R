@@ -9,34 +9,21 @@
 
 library(shiny)
 library(HistData)
-library(caret)
-library(plyr)
-library(randomForest)
-library(rpart)
+
 
 data(Galton)
 
 modelFit <- lm(Galton$child ~ Galton$parent)
 
-old_input <- 0
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  #input$save
-  #observe({
-    #cat(input$save)
-   # cat(old_input)
-  #  if (input$save == 0)
-      
-   #   return()
-    
-    
-   # isolate({
+  
        
         mp <- reactive((input$f_ht + (input$m_ht * 1.08)) /2)
         output$oid2 <- renderText(mp())
-        output$o_f_ht <- renderPrint({input$f_ht}) 
-        output$o_m_ht <- renderPrint({input$m_ht}) 
+        #output$o_f_ht <- renderPrint({input$f_ht}) 
+        #output$o_m_ht <- renderPrint({input$m_ht}) 
     
    
         childHeight <- reactive({ 
@@ -47,6 +34,5 @@ shinyServer(function(input, output) {
        })
          
        output$ochild <- renderText(childHeight()) 
-    #})
-  #})
+   
 })
