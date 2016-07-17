@@ -14,44 +14,42 @@ shinyUI(fluidPage(
   
   # Application title
   titlePanel("Predicting Child Heights Using Galton Data"),
+  h4("Instructions:"),
+  h6("Predict child's height by adjusting the sliders to enter Father's and Mother's heights."),
+  h6("Use Dropdown to enter Child's sex.\n\n"),
+  h6("Mid-Parent height is used to calc child's height. It is Father's ht. + (Mother's ht * 1.08)"),
+  
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-      #numericInput('id1', 'Father Height', 0, min = 50, max = 80, step = 1),
-      #numericInput('id2', 'Mother Height', 0, min = 50, max = 80, step = 1),
+      
       sliderInput("f_ht",
                    "Father's Height:",
-                   min = 50,
+                   min = 56,
                    max = 80,
-                   value = 0),
+                   value = 70),
       sliderInput("m_ht",
                   "Mother's Height:",
-                  min = 50,
+                  min = 56,
                   max = 80,
-                  value = 0),
+                  value = 64),
       selectInput("select", label = h3("Child's Sex"), 
                   choices = list("Male" = 1, "Female" = 2), 
-                  selected = 1),
+                  selected = 1)
       
      
-      submitButton('Submit')
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
-      h3('Child Height Predictor Results'),
-      #h4('You entered'),
-      #verbatimTextOutput("oid1"),
+      h3('Results'),
       
-      #h4("Father's Height"),
-      #verbatimTextOutput("o_f_ht"),
-      #h4("Mother's Height"),
-      #verbatimTextOutput("o_m_ht"),
-      h4("mid-parent height(Father's Height + (Mother's height * 1.08)/2)"),
+      h4("Mid-Parent Height"),
       verbatimTextOutput("oid2"),
       h4('Predicted Child Height'),
       verbatimTextOutput("ochild")
+      
     )
   )
 ))
